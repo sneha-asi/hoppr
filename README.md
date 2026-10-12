@@ -26,6 +26,8 @@ for another seed. Databases and runtime sessions are intentionally not committed
 
 ```sh
 python -m pip install -r outputs/requirements-test.txt
+python outputs/gen_demo_data.py
+python outputs/platform/gen_demo_data.py
 python -m pytest outputs/platform outputs/test_matcher.py outputs/test_api.py outputs/test_flight_ingest.py -q
 ```
 

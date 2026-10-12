@@ -1,0 +1,6 @@
+web/node_modules/
+web/dist/
+__pycache__/
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm

@@ -1,0 +1,8 @@
+{
+  "framework": "fastapi",
+  "functions": {
+    "main.py": {
+      "maxDuration": 60
+    }
+  }
+}

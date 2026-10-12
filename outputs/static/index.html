@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0751E6">
+  <title>Hoppr — Share Rides. Reach Faster.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/brand.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+<svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></symbol>
+  <symbol id="i-trip" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="15" rx="3"/><path d="M9 6V3h6v3M4 11h16M9 15h6"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 8H5a2 2 0 0 1 0-4h14v4M4 7v12a2 2 0 0 0 2 2h14V8"/><path d="M20 12h-6v5h6M16 14.5h.1"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="m4 10 2-6h12l2 6M3 10h18v8H3zM6 18v3M18 18v3M6 14h2M16 14h2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="m3 12 7-2 1-7h2l1 7 7 2v2l-7-1-1 6 3 2H8l3-2-1-6-7 1Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="14" rx="3"/><path d="M9 6V3h6v3M9 20v2m6-2v2M10 10v6m4-6v6"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 9a8 8 0 0 0-14-3L3 9m0-6v6h6M4 15a8 8 0 0 0 14 3l3-3m0 6v-6h-6"/></symbol>
+</defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a href="/" class="brand" aria-label="Hoppr home"><span class="logo-window"><img src="/static/assets/hoppr-original.jpeg" alt=""></span>Hoppr</a>
+  <span class="brand-note">Share Rides. Reach Faster.</span>
+  <span id="source-pill" class="source-pill">Demo snapshot</span>
+  <nav class="tabs" role="tablist" aria-label="Workspace">
+    <button role="tab" id="tab-rider" aria-controls="panel-rider" aria-selected="true" data-tab="rider">Rider</button>
+    <button role="tab" id="tab-driver" aria-controls="panel-driver" aria-selected="false" tabindex="-1" data-tab="driver">Driver</button>
+    <button role="tab" id="tab-ops" aria-controls="panel-ops" aria-selected="false" tabindex="-1" data-tab="ops">Ops</button>
+  </nav>
+</header>
+<main id="main">
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+  <div id="error" class="error" role="alert" hidden></div>
+  <section id="panel-rider" role="tabpanel" aria-labelledby="tab-rider">
+    <div class="intro"><p class="eyebrow">YOUR NEXT CHAPTER STARTS AT ARRIVALS</p>
+      <h1>Land together.<br><span>Ride lighter.</span></h1><p>Your flight-mates could be heading your way.<br>Share the last leg, at a fare that stays yours.</p>
+      <div class="route-art" aria-hidden="true"><span>ARRIVALS</span><i></i><svg class="icon"><use href="#i-car"/></svg><i></i><span>HOME</span></div>
+    </div>
+    <button class="text-button guide-open">First time here? How Hoppr works →</button>
+    <div class="rider-layout">
+      <div class="booking-column">
+        <ol class="steps" aria-label="Booking progress">
+          <li data-step="1" class="current"><span>01</span> Flight</li>
+          <li data-step="2"><span>02</span> Destination</li>
+          <li data-step="3"><span>03</span> Match</li>
+        </ol>
+        <section class="booking-sheet" aria-label="Book an airport ride">
+          <div id="step-1" class="step-panel">
+            <p class="eyebrow">LET’S GET YOU HOME</p><h2>Which flight are you on?</h2>
+            <label for="airport">Arriving at</label>
+            <select id="airport"><option value="DEL">Delhi · DEL</option><option value="BOM">Mumbai · BOM</option><option value="BLR">Bengaluru · BLR</option></select>
+            <label for="flight">Your flight</label><select id="flight" disabled><option>Loading arrivals…</option></select>
+            <div id="flight-detail" class="flight-detail"></div>
+            <button id="to-destination" class="primary" disabled>Book a cab <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+          <div id="step-2" class="step-panel" hidden>
+            <p class="eyebrow">02 / DESTINATION</p><h2>Where’s home tonight?</h2>
+            <label for="destination-search">Search drop-off areas</label><input id="destination-search" type="search" placeholder="Try Cyber City or Dwarka" autocomplete="off">
+            <div id="popular-destinations" class="popular-chips" aria-label="Popular destinations"></div>
+            <label for="destination">Drop-off area</label><select id="destination"></select>
+            <div id="destination-detail" class="flight-detail"></div>
+            <fieldset class="ride-types"><legend>Your kind of ride</legend>
+              <label class="ride-type"><input type="radio" name="ride-type" value="pool" checked><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg><span><strong>Pool</strong><small>Find flight-mates · recommended</small></span></label>
+              <label class="ride-type"><input type="radio" name="ride-type" value="private"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span><strong>Private</strong><small>The whole cab for your party</small></span></label>
+            </fieldset>
+            <div class="button-row"><button class="text-button" data-back="1">← Flight</button><button id="find-match" class="primary">Find my ride <span aria-hidden="true">↗</span></button></div>
+            <p class="micro">No match? You’ll still get a capped solo option.</p>
+          </div>
+          <div id="step-3" class="step-panel" hidden>
+            <div id="match-result" aria-live="polite"></div>
+            <button class="text-button" id="start-again">Start a new ride</button>
+          </div>
+        </section>
+        <details class="options" id="more-options"><summary>More options <span aria-hidden="true">+</span></summary>
+          <div class="option-fields">
+            <div><label for="party">People in your party</label><select id="party"><option value="1">1 person</option><option value="2">2 people</option><option value="3">3 people</option><option value="4">4 people</option></select></div>
+            <div><label for="bags">Large bags</label><select id="bags"><option value="0">No large bags</option><option value="1">1 bag</option><option value="2">2 bags</option><option value="3">3 bags</option><option value="4">4 bags</option></select></div>
+            <div><label for="max-wait">Maximum wait</label><select id="max-wait"><option value="15">15 minutes</option><option value="30" selected>30 minutes</option><option value="45">45 minutes</option></select></div>
+            <div><label for="gender">Party’s gender</label><select id="gender"><option value="unknown">Prefer not to say / mixed party</option><option value="woman">All women</option><option value="man">Men</option><option value="nonbinary">Nonbinary</option></select></div>
+          </div>
+          <label class="check"><input type="checkbox" id="women-only"> Women-only pool <span>All members of my party are women.</span></label>
+          <p class="micro">Preferences apply when you find a new ride.</p>
+          <section class="wallet-box"><div><p class="eyebrow">HOPPR WALLET</p><h3 id="wallet-balance">₹—</h3></div><span class="tag">Demo credit</span>
+            <p>Your wallet goes first. Any remaining amount uses the method below.</p>
+            <label for="payment-method">Remaining payment</label><select id="payment-method"><option value="upi">UPI · demo payment</option><option value="card">Card · demo payment</option><option value="cash">Cash at pickup</option></select>
+            <details><summary>Wallet activity</summary><ul id="wallet-ledger" class="ledger"></ul></details>
+          </section>
+          <div class="extras"><button id="support-open" class="text-button">Need a hand? Contact support ↗</button><label for="theme">Appearance</label><select id="theme"><option value="system">Follow device</option><option value="light">Light</option><option value="dark">Dark</option></select></div>
+        </details>
+      </div>
+      <aside class="arrivals" aria-label="Arrivals board"><div class="board-heading"><p class="eyebrow">YOUR FLIGHT-MATES START HERE</p><h2>Arrivals <span id="board-airport">DEL</span></h2></div>
+        <div class="board-meta"><span id="feed-label">Connecting…</span><button id="refresh-arrivals" class="text-button" aria-label="Refresh arrivals">↻ Refresh</button></div>
+        <div class="board-labels" aria-hidden="true"><span>FLIGHT / TERMINAL</span><span>LANDING</span><span>STATUS</span></div>
+        <div id="arrival-list" class="arrival-list"></div><p class="board-footer" id="board-updated">Updates every 30 seconds</p>
+        <div class="trust-note"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><div><strong>A little certainty after landing.</strong><p>Your booked price stays locked. Even if your flight or pool changes.</p></div></div>
+      </aside>
+    </div>
+  </section>
+  <section id="panel-trips" class="rider-utility" hidden><p class="eyebrow">THE LAST LEGS YOU’VE SHARED</p><h1>Your trips.</h1><div id="my-trips"></div></section>
+  <section id="panel-wallet" class="rider-utility" hidden><p class="eyebrow">A LITTLE HEAD START</p><h1>Your wallet.</h1><div class="wallet-hero"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg><span>Available demo credit</span><strong id="wallet-page-balance">₹—</strong><p>Applied before UPI, card or cash. Eligible refunds return here.</p></div><h2>Wallet activity</h2><ul id="wallet-page-ledger" class="ledger"></ul></section>
+  <section id="panel-profile" class="rider-utility" hidden><p class="eyebrow">YOUR WAY HOME</p><h1>Your preferences.</h1><div class="profile-card"><span class="profile-avatar"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg></span><h2>Demo traveller</h2><p>Demo data. Not real people. Identity verification is not connected.</p><label class="check"><input id="profile-women" type="checkbox">Default to women-only pools<span>All members of my party are women.</span></label><button class="text-button support-trigger">Need help? Contact support</button></div></section>
+  <section id="panel-driver" role="tabpanel" aria-labelledby="tab-driver" hidden>
+    <div class="section-title"><div><p class="eyebrow">THE PEOPLE BEHIND THE WHEEL</p><h1>Your next pickup.</h1><p>Confirmed riders. Clear stops. One trip at a time.</p></div><button id="refresh-driver" class="outline">Refresh trips ↻</button></div>
+    <label for="driver-filter">Driver ID (optional)</label><input id="driver-filter" placeholder="e.g. DEL-D01" autocomplete="off">
+    <div id="driver-trips" class="driver-grid"></div>
+  </section>
+  <section id="panel-ops" role="tabpanel" aria-labelledby="tab-ops" hidden>
+    <div class="section-title"><div><p class="eyebrow">THE BIGGER PICTURE</p><h1>Less traffic.<br>More together.</h1></div><button id="refresh-ops" class="outline">Refresh overview ↻</button></div>
+    <p class="micro">Confirmed API bookings, including completed trips. One separate cab per booking is the baseline.</p>
+    <div id="ops-metrics" class="metrics"></div>
+    <section class="history"><div class="history-title"><div><p class="eyebrow">14-DAY DEMO HISTORY</p><h2>Every shared ride adds up.</h2></div><span class="tag">Synthetic history</span></div>
+      <div id="history-chart" class="history-chart" aria-label="Daily cabs needed"></div>
+      <div class="table-scroll"><table><caption>Daily trip history from the original demo generator</caption><thead><tr><th scope="col">Date</th><th scope="col">Cabs</th><th scope="col">Fewer cars</th><th scope="col">Savings</th><th scope="col">People / cab</th></tr></thead><tbody id="history-table"></tbody></table></div>
+    </section>
+  </section>
+  <footer><span>hoppr. <b>Share the last leg.</b></span><span>Local demo · payments simulated · arrivals source shown on board</span></footer>
+</main>
+<nav class="rider-nav" aria-label="Rider navigation"><button data-view="home" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Home</button><button data-view="trips"><svg class="icon" aria-hidden="true"><use href="#i-trip"/></svg>Trips</button><button data-view="wallet"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg>Wallet</button><button data-view="profile"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>Profile</button></nav>
+<dialog id="support-dialog" aria-labelledby="support-title"><form id="support-form"><div class="dialog-header"><h2 id="support-title">We’re here to help.</h2><button type="button" id="support-close" class="text-button" aria-label="Close support">✕</button></div>
+  <p>Tell us what happened. Your request is saved in this demo; no support agent is connected.</p><label for="support-message">Your message</label><textarea id="support-message" required minlength="5" maxlength="2000" rows="5"></textarea><button class="primary" type="submit">Save support request ↗</button><p id="support-status" role="status"></p></form></dialog>
+<dialog id="welcome-dialog" aria-labelledby="welcome-title">
+  <div class="dialog-header"><p class="eyebrow">WELCOME TO HOPPR</p><button id="welcome-skip" class="text-button">Skip intro</button></div>
+  <p id="welcome-progress" class="micro" role="status"></p>
+  <div id="welcome-art" class="welcome-art" aria-hidden="true"></div>
+  <h2 id="welcome-title"></h2><p id="welcome-copy"></p>
+  <p class="micro">Local demo · no account or location permission needed.</p>
+  <div class="button-row"><button id="welcome-back" class="text-button">Back</button><button id="welcome-next" class="primary">Next</button></div>
+</dialog>
+<script defer src="/static/onboarding.js"></script>
+</body></html>

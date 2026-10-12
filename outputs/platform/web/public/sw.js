@@ -1,0 +1,4 @@
+const CACHE='hoppr-v2-shell-1';
+self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/rider','/driver','/icon.svg']))));
+self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));
+self.addEventListener('fetch',event=>{const url=new URL(event.request.url);if(url.origin!==self.location.origin||url.pathname.startsWith('/v2')||event.request.method!=='GET')return;event.respondWith(fetch(event.request).then(response=>{if(response.ok){const clone=response.clone();caches.open(CACHE).then(c=>c.put(event.request,clone));}return response;}).catch(async()=>{const cached=await caches.match(event.request);if(cached)return cached;if(event.request.mode==='navigate')return caches.match('/rider');return new Response('Offline',{status:503});}));});

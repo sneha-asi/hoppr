@@ -74,7 +74,8 @@ booked prices are retained, and Rider/Driver/Ops receive notifications.
 See `DATA_MODEL.md`. Seed 20261009 contains 800 riders, 120 drivers and cabs,
 4,725 synthetic flights, 14,175 ETA observations, **6,158 pools**, **12,551 bookings
 and payments**, 300 support tickets, 25 incidents and six Ops accounts.
-Solo share is **35.48%**; exact distributions are in `validation-report.json`.
+Solo share is **35.48%**; exact distributions are written to
+`validation-report.json` when `gen_demo_data.py` runs (not committed).
 Actual greedy matching creates every archive pool, partitioned by terminal.
 Driver allocation checks trip overlap and a 15-minute rest interval.
 

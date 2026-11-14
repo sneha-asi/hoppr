@@ -5,6 +5,10 @@ backend, pure matching functions and reproducible synthetic data.
 
 Live demo: https://vercel-hoppr.vercel.app/rider
 
+**Which app is current:** `outputs/platform/` (React apps + `backend.py`) is the
+current version and the one deployed. `outputs/api.py` with `outputs/static/` is the
+earlier static demo, kept for reference; see [outputs/README.md](outputs/README.md).
+
 ## Run locally
 
 From this repository's root, using Python 3.11+ and Node 24:
